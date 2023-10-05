@@ -23,7 +23,7 @@ namespace DecisionMaking.UAI
             agent.ExpendEnergy(energyCost);
 
             float damage = Random.Range(0, maxDamage);
-            agent.Opponent.ApplyDamage(damage);
+            agent.Opponent.ApplyDamage(maxDamage);
         }
 
         public override void StopAction(Agent agent)

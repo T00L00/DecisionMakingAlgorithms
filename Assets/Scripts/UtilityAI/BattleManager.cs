@@ -19,6 +19,13 @@ namespace DecisionMaking.UAI
 
         private BattleState currentState;
 
+        public static BattleManager Instance;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
         // Start is called before the first frame update
         void Start()
         {
@@ -54,7 +61,19 @@ namespace DecisionMaking.UAI
 
         public void ResetBattle()
         {
+            StartCoroutine(ResetBattleCoroutine());
+        }
 
+        private IEnumerator ResetBattleCoroutine()
+        {
+            yield return new WaitForSeconds(1f);
+
+            currentState = BattleState.Agent;
+            npc.Heal(100f);
+            npc.RefillEnergy(100f);
+            critter.Heal(100f);
+            critter.RefillEnergy(100f);
+            StartCoroutine(StartTurn());
         }
     }
 }

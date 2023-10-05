@@ -6,6 +6,7 @@ namespace DecisionMaking.UAI
 {
     public abstract class DecisionMaker : MonoBehaviour
     {
+        public virtual void Init(Agent agent) { }
         public abstract AIAction DecideAction(AIAction[] actions);
     }
 }

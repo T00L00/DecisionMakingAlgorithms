@@ -17,6 +17,13 @@ namespace DecisionMaking.UAI
 
         private AIAction currentAction;
 
+        private void Start()
+        {
+            decisionMaker.Init(this);
+        }
+
+        public float RemainingEnergy => energy.RemainingEnergy;
+        public float RemainingHealth => health.RemainingHealth;
         public Agent Opponent => opponent;
         public string Id => id;
 
@@ -30,6 +37,8 @@ namespace DecisionMaking.UAI
             currentAction.StartAction(this);
             yield return new WaitForSeconds(2);
             currentAction.StopAction(this);
+
+            opponent.RefillEnergy(Random.Range(10f, 20f));
         }
 
         public void ApplyDamage(float damage)
@@ -45,6 +54,11 @@ namespace DecisionMaking.UAI
         public void ExpendEnergy(float amount)
         {
             energy.Expend(amount);
+        }
+
+        public void RefillEnergy(float amount)
+        {
+            energy.Refill(amount);
         }
 
         public void Display(string text)

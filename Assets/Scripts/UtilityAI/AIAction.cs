@@ -8,6 +8,10 @@ namespace DecisionMaking.UAI
     public abstract class AIAction : MonoBehaviour
     {
         [SerializeField] protected string id;
+        [SerializeField] protected Consideration[] considerations;
+
+        public Consideration[] Considerations => considerations;
+        public float Score { get; set; }
 
         public string Id => id;
 
